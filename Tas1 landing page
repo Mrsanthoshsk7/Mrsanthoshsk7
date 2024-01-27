@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web Landing Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #1a76d9;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2107ea;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        footer {
+            background-color: #225fda;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>octanet task 1</h1>
+        <p>Welcome to our awesome website!</p>
+    </header>
+
+    <section>
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget turpis vel sapien facilisis laoreet.</p>
+        <a href="#cta-section" class="cta-button">Learn More</a>
+    </section>
+
+    <section id="cta-section">
+        <h2>Call to Action</h2>
+        <p>Sign up now for exclusive access to our services.</p>
+        <a href="#signup" class="cta-button">Sign Up</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
