@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SQE</title>
+  <link rel="style"
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #263746;
+      padding: 1rem ;
+    }
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #FF5C2C;
+    }
+    .navbar-nav .nav-link {
+      color: #fff;
+      margin-left: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #FF5C2C;
+    }
+
+    
+    .hero {
+      position: relative;
+      padding: 2rem;
+        height: 88vh;
+      background-color: #263746;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 550px;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      margin-top: 1rem;
+      color: #cfd8dc;
+    }
+
+    .btn-outline-more {
+      background-color: transparent;
+      color: #ffffffff;
+      border: 2px solid #FF5C2C;
+      padding: 0.7rem 1.5rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      text-transform: uppercase;
+    }
+    
+    .btn-learn-more {
+      background: #FF5C2C;
+      color: #ffffffff;
+      width: 50px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      margin: 18px 2px;
+    }
+
+
+    .hero-image-container {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 55%;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .hero-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: ellipse(80% 100% at 90% 80%);
+      border: 10px solid #FF5C2C;
+    }
+
+
+    @media (max-width: 992px) {
+      .hero-image-container {
+        position: static;
+        width: 100%;
+        height: auto;
+        clip-path: none;
+        border: none;
+      }
+      .hero-image-container img {
+        clip-path: none;
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #212f3c;">
+    <div class="container">
+      <a class="navbar-brand brand" href="#">SQE</a>
+       <!-- Toggle button (hamburger) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+       <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Price</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center">
+    <div class="hero-content">
+      <h6 class="text-uppercase " style="color: #FF5C2C;">Digital Agency</h6>
+      <h1>Grow your<br> Business with us</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque vel aut animi quam ducimus consequatur voluptas delectus, sapiente.</p>
+      <button class="btn-outline-more">More About →</button>
+      <button class="btn btn-learn-more">
+          <span>&#9654;</span>
+        </button>
+    </div>
+
+    <div class="hero-image-container">
+      <img src="https://images.pexels.com/photos/1181395/pexels-photo-1181395.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Hero Image">
+    </div>
+  </section>
+<br>
+  <!-- Why Choose Us Section -->
+  <section class="why-choose">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Left Text -->
+        <div class="col-lg-5 mb-4">
+          <h2>Why Choose Us</h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and type setting industry when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Labore earum omnis dolores nihil vel culpa. Consequuntur necessitatibus nulla, fuga natus itaque quos repellendus aliquid tempore officiis.</p>
+        </div>
+
+        <!-- Service Cards -->
+         <div class="col-lg-7">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card text-center shadow border-0 h-100 p-4">
+                <i class="bi bi-pencil-square fs-1 " style="color:#FF5C2C !important;"></i>
+                <h5 class="fw-semibold mt-3">Strategy & Research</h5>
+                <p class="text-muted small">Quibusdam soluta porro consequuntur earum corrupti tempore dolorem sit.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card text-center shadow border-0 h-100 p-4">
+                <i class="bi bi-laptop fs-1 " style="color:#FF5C2C !important;"></i>
+                <h5 class="fw-semibold mt-3">Design & Development</h5>
+                <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card text-center shadow border-0 h-100 p-4">
+                <i class="bi bi-gem fs-1 " style="color:#FF5C2C !important;"></i>
+                <h5 class="fw-semibold mt-3">Analyzing & Reporting</h5>
+                <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card text-center shadow border-0 h-100 p-4">
+                <i class="bi bi-graph-up-arrow fs-1 " style="color:#FF5C2C !important;"></i>
+                <h5 class="fw-semibold mt-3">Marketing Growth</h5>
+                <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

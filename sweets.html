@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sweet Heart - Sweets & Savouries</title>
+  <!-- Bootstrap CSS v5+ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fbf6ef;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar {
+      background-color: #693f10;
+    }
+    .navbar-brand, .nav-link, .navbar-text {
+      color: #fff !important;
+      font-weight: 500;
+    }
+    .hero-section {
+      background: #f9eee1;
+      padding: 48px 0 16px 0;
+    }
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #693f10;
+    }
+    .highlight {
+      color: #f59e42;
+    }
+    .category-card, .product-card {
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #ececec;
+      border: none;
+    }
+    .category-icon {
+      width: 64px; height: 64px;
+      object-fit: cover;
+      margin: 0 auto 15px;
+    }
+    .testimonial-box {
+      background: #fff9ed;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 1px 8px #eee;
+    }
+    .chef-img {
+      border-radius: 50%; 
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border: 3px solid #f7c48a;
+      margin-bottom: 12px;
+    }
+    .footer {
+      background-color: #693f10;
+      color: #ffffffdd;
+      padding: 24px 0 0;
+    }
+    .btn-main {
+      background: #f59e42;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 20px;
+    }
+    .btn-main:hover {
+      background: #db890d;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-md fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Sweet Heart</a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon text-dark"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Offers</a></li>
+      </ul>
+      <div class="ms-3 navbar-text">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+</svg>
+        <span class="me-2 text-light">👤</span> Login
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section pt-5">
+  <div class="container pt-5">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="hero-title mb-3">
+          Dive into the Magic of
+          <span class="highlight">Sweetness &amp; Savouries</span>
+        </div>
+        <p class="mb-4">Where every bite is a celebration of love, taste, and tradition.</p>
+        <a href="#" class="btn btn-main">Order Now</a>
+      </div>
+      <div class="col-lg-4 text-center">
+        <img src="https://t3.ftcdn.net/jpg/03/13/32/24/360_F_313322473_d43FDGLv8H0qxdBbLKFZ0orQ80iP3wdW.jpg" alt="Sweets Woman" class="rounded-circle" width="180" height="180">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="py-4">
+  <div class="container text-center">
+    <h5 class="text-muted fw-bold">CUSTOMER FAVOURITES</h5>
+    <h2 class="mb-4 fw-bold">Popular Categories</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3">
+        <div class="card category-card p-3">
+          <img src="https://www.shreemithai.com/cdn/shop/products/boondhi-ladoo-489317.jpg?v=1707819763&width=700" class="category-icon" alt="">
+          <div class="fw-bold">Signature Sweets</div>
+          <div class="small text-muted">Indian &amp; Fusion Delights<br>20+ dishes</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card category-card p-3">
+          <img src="https://www.shreemithai.com/cdn/shop/products/spl-madras-mixture-567479.jpg?v=1707820407&width=700" class="category-icon" alt="">
+          <div class="fw-bold">Savory Bites</div>
+          <div class="small text-muted">Crispy, Spicy &amp; Flavourful Snacks<br>15+ dishes</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card category-card p-3">
+          <img src="https://www.shreemithai.com/cdn/shop/products/biscoff-dark-ganache-cake-675863.jpg?v=1707819760&width=700" class="category-icon" alt="">
+          <div class="fw-bold">Cakes &amp; Pastries</div>
+          <div class="small text-muted">Gourmet made for all occasions<br>10+ dishes</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card category-card p-3">
+          <img src="https://www.jiosweet.com/images/thumbs/0000598_ghee-sweets-and-namkeen-combo_550.jpeg" class="category-icon" alt="">
+          <div class="fw-bold">Browse All</div>
+          <div class="small text-muted">Explore sweet &amp; savory delights<br>25+ dishes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Special Dishes -->
+<section class="py-4">
+  <div class="container">
+    <div class="mb-3">
+      <h5 class="fw-bold">SPECIAL DISHES</h5>
+      <h3>Standout Sweets &amp; Savories from Our Menu</h3>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="card product-card p-2">
+          <img src="https://www.shreemithai.com/cdn/shop/collections/cashew-sweets-710926.jpg?v=1707819628&width=800" class="card-img-top rounded-3" alt="">
+          <div class="card-body px-2 py-3">
+            <h6 class="card-title fw-bold mb-1">Kaju Katli</h6>
+            <div class="small text-muted mb-2">Cashew-rich dessert slices with almond &amp; silver topping.</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-success fw-bold">&#8377; 250</span>
+              <button class="btn btn-main btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card product-card p-2">
+          <img src="https://www.indianveggiedelight.com/wp-content/uploads/2020/02/air-fryer-onion-pakoda-featured.jpg" class="card-img-top rounded-3" alt="">
+          <div class="card-body px-2 py-3">
+            <h6 class="card-title fw-bold mb-1">Onion Pakora</h6>
+            <div class="small text-muted mb-2">Crunchy fritters of onions with gram flour.</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-success fw-bold">&#8377; 80</span>
+              <button class="btn btn-main btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card product-card p-2">
+          <img src="https://www.shreemithai.com/cdn/shop/products/gulab-jamun-416656.jpg?v=1707819875&width=700" class="card-img-top rounded-3" alt="">
+          <div class="card-body px-2 py-3">
+            <h6 class="card-title fw-bold mb-1">Gulab Jamun</h6>
+            <div class="small text-muted mb-2">Soft, juicy &amp; milk-rich authentic taste.</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-success fw-bold">&#8377; 140</span>
+              <button class="btn btn-main btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card product-card p-2">
+          <img src="https://www.shreemithai.com/cdn/shop/products/black-forest-cake-222028.jpg?v=1707819760&width=700" class="card-img-top rounded-3" alt="">
+          <div class="card-body px-2 py-3">
+            <h6 class="card-title fw-bold mb-1">Black Forest Cake</h6>
+            <div class="small text-muted mb-2">Chocolate cake with whipped cream &amp; cherries.</div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-success fw-bold">&#8377; 350</span>
+              <button class="btn btn-main btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials & Chef Intro -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-3">
+      <div class="col-md-4 text-center">
+        <img src="/chef.png" alt="Chef" class="chef-img mb-2">
+        <h6 class="fw-bold">Our Best Chef</h6>
+      </div>
+      <div class="col-md-8">
+        <div class="testimonial-box">
+          <h4 class="fw-bold mb-2">What Our Sweet Lovers Say About Us</h4>
+          <p class="mb-3">
+            "Sweet Heart brings joy to us for every occasion! Their sweets and snacks are unmatched. Buyers love the home-made touch, flavor, and care in so much here. From mid-night invites to any occasion, Sweet Heart is a reliable friend. For birthday bashes, kitchen celebrations, or a quick snack or box for gatherings, Sweet Heart never fails to deliver on sweetness and memories to the moment. Truly, it's the little bits of care that make each bite worth sharing."
+          </p>
+          <div>
+            <span>Customer Feedback</span>
+            <span class="ms-3 text-warning">&#9733; 4.9 | 10.9K+ Reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Story, Services, and Custom Orders -->
+<section class="py-4">
+  <div class="container">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-6">
+        <h5 class="fw-bold">OUR STORY & SERVICES</h5>
+        <h3>Our Sweet Story &amp; Special Services</h3>
+        <p>
+          At Sweet Heart, we blend tradition with taste. From authentic Indian sweets to crispy savouries, every delicacy is handcrafted with love. Whether it's a festival, celebration or just your sweet craving, we're here to serve you happiness.
+        </p>
+        <a href="#" class="btn btn-main">Subscribe</a>
+      </div>
+      <div class="col-md-6">
+        <div class="row g-2">
+          <div class="col-6">
+            <div class="p-3 bg-light rounded-3 shadow text-center fw-semibold">Custom Orders<br><span class="small text-muted">Tailored sweets for any occasion</span></div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-light rounded-3 shadow text-center fw-semibold">Party Catering<br><span class="small text-muted">Make your events sparkle with us</span></div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-light rounded-3 shadow text-center fw-semibold">Fast Delivery<br><span class="small text-muted">Order now, delivered fresh</span></div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-light rounded-3 shadow text-center fw-semibold">Gift Boxes<br><span class="small text-muted">Special gifts for your loved ones</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer mt-5">
+  <div class="container">
+    <div class="row py-4">
+      <div class="col-md-4">
+        <div class="fw-bold mb-2">Sweet Heart</div>
+        <div class="small">
+          Finest Indian sweets, goodies &amp; savouries<br>
+          Since 1998, spreading sweetness.
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="fw-bold mb-2">Main Menu</div>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="link-light">Home</a></li>
+          <li><a href="#" class="link-light">Menu</a></li>
+          <li><a href="#" class="link-light">Services</a></li>
+          <li><a href="#" class="link-light">Offers</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <div class="fw-bold mb-2">Contact Us</div>
+        <div class="small">
+          sweetheart@sweets.com<br>
+          +91 1234567890<br>
+          123, Sweets Street, Chennai
+        </div>
+      </div>
+      <div class="col-md-3 text-end">
+        <div class="mb-2">
+          <span class="">&#169; 2025 - All rights reserved</span>
+        </div>
+        <div>
+          <a href="#" class="me-2 link-light"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="me-2 link-light"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="link-light"><i class="bi bi-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Optionally add Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</body>
+</html>

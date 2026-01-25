@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie Ticket Booking</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #28292aff 60%, #111213ff 100%);
+      color: #222;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      transition: background 0.6s;
+    }
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+    }
+    /* Poster carousel styles */
+    .poster-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 18px;
+      padding: 10px 0 10px 0;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #b2e0ff #e3f0ff;
+    }
+    .poster-carousel::-webkit-scrollbar {
+      height: 8px;
+      background: #e3f0ff;
+    }
+    .poster-carousel::-webkit-scrollbar-thumb {
+      background: #b2e0ff;
+      border-radius: 8px;
+    }
+    .poster-item {
+      min-width: 120px;
+      max-width: 120px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(33,150,243,0.10);
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.3s;
+    }
+    .poster-item img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+    .poster-item:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 18px rgba(33,150,243,0.18);
+    }
+    .nav-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .nav-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeInUp 0.7s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .seat {
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      background: #6c757d;
+      margin: 4px;
+      display: inline-block;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .seat:hover:not(.occupied):not(.selected) {
+      background: #0f68ef;
+      transform: scale(1.12);
+    }
+    .seat.selected {
+      background-color: #07c646ff !important;
+      animation: seatPop 0.3s;
+    }
+    .seat.occupied {
+      background-color: #0a0a0aff !important;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    @keyframes seatPop {
+      0% { transform: scale(1); }
+      60% { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+    .screen {
+      background: linear-gradient(90deg, #0f68ef 60%, #07c646 100%);
+      height: 24px;
+      border-radius: 8px;
+      text-align: center;
+      color: #000;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 12px rgba(15,104,239,0.12);
+      margin-bottom: 18px;
+      animation: fadeInUp 0.7s;
+    }
+    .btn-primary, .btn-success {
+      transition: background 0.3s, transform 0.2s;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .btn-primary:hover, .btn-success:hover {
+      transform: scale(1.06);
+      filter: brightness(1.1);
+    }
+    .navbar {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      background: linear-gradient(90deg, #2c3b9560%, #1ddae8 70%) !important;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      top: 0;
+    }
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #e3f30aff !important;
+      text-shadow: 0 2px 8px #0f68ef44;
+    }
+    .nav-link.active {
+      color: #07c646 !important;
+      font-weight: bold;
+      border-bottom: 2px solid #07c646;
+      background: #0f68ef22;
+      border-radius: 6px 6px 0 0;
+      transition: background 0.3s;
+    }
+    .nav-link {
+      transition: color 0.3s, background 0.3s;
+    }
+    .modal-content {
+      border-radius: 18px;
+      animation: fadeInUp 0.5s;
+    }
+    .form-select {
+      border-radius: 8px;
+    }
+    .list-group-item-action {
+      transition: background 0.3s, color 0.3s;
+    }
+    .list-group-item-action:hover {
+      background: #0f68ef;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CineBook</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#" data-target="movies">Movies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-target="showtimes">Showtimes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-target="tickets">My Tickets</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br><br>
+  <div class="container mt-4" style="animation: fadeInUp 1s;">
+    <!-- Movies Section -->
+    <div id="movies" class="nav-section active">
+      <div class="row align-items-center">
+        <div class="col-md-7">
+          <h1 class="display-4" style="animation: fadeInUp 1s; color:#2196f3;">Book Your Movie Tickets Online</h1>
+          <p class="lead" style="animation: fadeInUp 1.2s; color:#1769aa;">Find movies, choose seats, and experience cinema with ease and style.</p>
+          <div class="poster-carousel mt-4" id="posterCarousel">
+            <div class="poster-item"><img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-Ny45LzEwICA0MksgVm90ZXM%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00434543-tayeyecvdn-portrait.jpg" alt="Madharasi"></div>
+            <div class="poster-item"><img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OS4zLzEwICAxNjQuOUsgVm90ZXM%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00456016-yevpvpnehb-portrait.jpg" alt="Lokah Chapter-1"></div>
+            <div class="poster-item"><img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OS8xMCAgNTEuMksgVm90ZXM%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00395402-bvaapmrwly-portrait.jpg" alt="Mirai"></div>
+            <div class="poster-item"><img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg" alt="Inception"></div>
+            <div class="poster-item"><img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg" alt="Interstellar"></div>
+            <div class="poster-item"><img src="https://m.media-amazon.com/images/I/91KkWf50SoL._AC_SY679_.jpg" alt="Avengers"></div>
+            <div class="poster-item"><img src="https://preview.redd.it/hsw0h8jjjlv31.jpg?auto=webp&s=4806a00c52fed508c995ff235b7a1c38bb587a52" alt="Joker"></div>
+          </div>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="https://cdn.dribbble.com/userupload/27637308/file/original-aa8d9798ecfa08eab09e2ff4b0c5c77a.png" alt="Movie" class="img-fluid rounded shadow-lg" style="animation: fadeInUp 1.3s; max-height: 320px;">
+        </div>
+      </div>
+      <div class="row mt-5">
+        <!-- Movie Cards -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://cdn.123telugu.com/videosimg/wp-content/uploads/2025/02/maxresdefault-36.jpg" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Madharasi</h5>
+              <p class="card-text">Action | 2:14 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://img.theweek.in/content/dam/week/week/news/entertainment/images/2025/9/3/lokah-box-office-collection.jpg" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Lokah Chapter-1</h5>
+              <p class="card-text">Sci-Fi | 2:49 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://cdn.123telugu.com/content/wp-content/uploads/2025/09/mirai-1-1.webp" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Mirai</h5>
+              <p class="card-text">Adventure | 2:31 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Inception</h5>
+              <p class="card-text">Thriller | 2:28 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Interstellar</h5>
+              <p class="card-text">Sci-Fi | 2:49 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://m.media-amazon.com/images/I/91KkWf50SoL._AC_SY679_.jpg" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Avengers</h5>
+              <p class="card-text">Action | 2:23 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="https://images.squarespace-cdn.com/content/v1/5a90557e1137a6fdeeb6bb3e/1571160072553-0SCZGFBGCFEHP5SIF2II/joker-2019-review.jpg" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h5 class="card-title">Joker</h5>
+              <p class="card-text">Drama | 2:02 mins</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seatModal">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showtimes Section -->
+    <div id="showtimes" class="nav-section">
+      <h2 class="mb-3 text-light">Available Showtimes</h2>
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action">Madharasi - 10:00 AM</button>
+        <button type="button" class="list-group-item list-group-item-action">Lokah Chapter-1 - 1:00 PM</button>
+        <button type="button" class="list-group-item list-group-item-action">Mirai - 7:00 PM</button>
+        <!-- Add more showtimes -->
+      </div>
+    </div>
+
+    <!-- My Tickets Section -->
+    <div id="tickets" class="nav-section">
+      <h2 class="mb-3 text-light">My Tickets</h2>
+      <div class="card bg-secondary mb-4" style="animation: fadeInUp 1.2s;">
+        <div class="card-body">
+          <h5 class="card-title">No tickets booked yet.</h5>
+          <p class="card-text">View and manage your booked tickets here.</p>
+        </div>
+      </div>
+      <!-- Dynamically insert booked tickets here if using backend -->
+    </div>
+  </div>
+
+  <!-- Seat Selection Modal -->
+  <div class="modal fade" id="seatModal" tabindex="-1" aria-labelledby="seatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="seatModalLabel">Select Your Seats</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body bg-light">
+          <div class="screen mb-3">Screen</div>
+          <div class="d-flex flex-wrap justify-content-center">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat selected"></div>
+            <!-- Repeat for more seats -->
+          </div>
+          <div class="mt-3">
+            <label for="showtime-modal">Showtime</label>
+            <select id="showtime-modal" class="form-select mb-2">
+              <option>10:00 AM</option>
+              <option>1:00 PM</option>
+              <option>4:00 PM</option>
+              <option>7:00 PM</option>
+            </select>
+            <button class="btn btn-success w-100">Confirm Booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JS Bundle (with Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Navigation Logic and Seat Interactivity -->
+  <script>
+    // Poster carousel auto-scroll
+    function autoScrollCarousel() {
+      const carousel = document.getElementById('posterCarousel');
+      if (!carousel) return;
+      let maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      let direction = 1;
+      setInterval(() => {
+        if (carousel.scrollLeft >= maxScroll) direction = -1;
+        if (carousel.scrollLeft <= 0) direction = 1;
+        carousel.scrollLeft += direction * 2;
+      }, 30);
+    }
+    window.addEventListener('DOMContentLoaded', autoScrollCarousel);
+    // Animated section switching
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(function(nav){
+      nav.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link){
+          link.classList.remove('active');
+        });
+        nav.classList.add('active');
+        let target = nav.getAttribute('data-target');
+        document.querySelectorAll('.nav-section').forEach(function(section){
+          section.classList.remove('active');
+        });
+        setTimeout(function(){
+          document.getElementById(target).classList.add('active');
+        }, 100); // slight delay for smoothness
+      });
+    });
+
+    // Seat selection with animation
+    document.querySelectorAll('.seat').forEach(function(seat){
+      seat.addEventListener('click', function(){
+        if (!seat.classList.contains('occupied')) {
+          seat.classList.toggle('selected');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

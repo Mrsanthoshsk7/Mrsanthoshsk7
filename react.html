@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sidebar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"  
+    />
+    <style>
+      /* small helper to keep the example tidy */
+      .sidebar-lg {
+        width: 280px;
+      }
+      .nav-link {
+      color: black !important;
+      font-weight: 500;
+      }
+      .letter-space {
+        letter-spacing: 0.6px;
+      }
+        .masonry {
+      column-gap: 1.25rem;
+    }
+
+   @media (min-width: 1200px) { .masonry { column-count: 3; } }
+    @media (min-width: 768px) and (max-width:1199px) { .masonry { column-count: 2; } }
+    @media (max-width: 767px) { .masonry { column-count: 1; } }
+
+    .masonry-item {
+      display: inline-block;      
+      width: 100%;
+      margin-bottom: 1.25rem;
+      break-inside: avoid;
+      position: relative;
+      overflow: hidden;
+      border-radius: .25rem;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,.04);
+    }
+     .masonry-item img {
+      width: 100%;
+      height: auto;
+      display:block;
+    }
+
+    
+    .product-card-body {
+      padding: .9rem .9rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+    }
+    .price-tag {
+      font-size: .8rem;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: .25rem;
+    }
+    .product-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #222;
+    }
+    .accent {
+      width: 36px;
+      height: 4px;
+      background: #f0b400;
+      margin-bottom: .5rem;
+      border-radius: 2px;
+    }
+    </style>
+  </head>
+  <body>
+
+    <!-- Offcanvas toggler (visible on small / md screens) -->
+    <button
+      class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#mobileSidebar"
+      aria-controls="mobileSidebar"
+      aria-label="Open sidebar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Desktop sidebar (visible lg and above) -->
+    <aside class="d-none d-lg-block bg-light  border-end sidebar-lg position-fixed">
+      <div class="p-3">
+        <h1 class="fw-bold mb-3">Amad<span class="fw-bold text-warning circle-fill-rounded">O<h6 class="text-dark">F U R N I T U R E</h6></span></h1><br>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="#">Shop</a>
+          <a class="nav-link" href="#">Product</a>
+          <a class="nav-link" href="#">Cart</a>
+          <a class="nav-link" href="#">Checkout</a>
+
+          <div class="mt-3">
+            <button class="btn btn-warning text-white w-100 mb-2">%discount%</button>
+            <button class="btn btn-dark text-white w-100">Now this week</button>
+          </div>
+
+          <hr />
+
+          <a class="nav-link mt-2" href="#">Cart (0)</a>
+          <a class="nav-link" href="#">Favourite</a>
+          <a class="nav-link" href="#">Search</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Mobile offcanvas sidebar -->
+    <div
+      class="offcanvas offcanvas-start d-lg-none"
+      tabindex="-1"
+      id="mobileSidebar"
+      aria-labelledby="mobileSidebarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Adam</h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link" href="#">Shop</a>
+          <a class="nav-link" href="#">Product</a>
+          <a class="nav-link" href="#">Cart</a>
+          <a class="nav-link" href="#">Checkout</a>
+
+          <div class="mt-3">
+            <button class="btn btn-warning text-white w-100 mb-2">%discount%</button>
+            <button class="btn btn-dark text-white w-100">Now this week</button>
+          </div>
+
+          <hr />
+
+          <a class="nav-link mt-2" href="#"><i class="bi bi-cart"></i> Cart (0)</a>
+          <a class="nav-link" href="#"><i class="bi bi-heart"></i> Favourite</a>
+          <a class="nav-link" href="#"><i class="bi bi-search"></i> Search</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main content: add left margin on lg+ to avoid being under the fixed sidebar -->
+     <div class="d-flex" style="margin-left: 280px;">
+    <main class="col-12 col-md-8 col-lg-9 col-xl-10 px-4 py-4">
+        <div class="masonry">
+
+          <!-- Repeat masonry items -->
+          <article class="masonry-item">
+            <img src="https://ouchcart.com/cdn/shop/products/Jazouli_25.5_Wide_Barrel_Chair_and_Ottoman.jpg?v=1721368347&width=800" alt="Modern chair">
+            <div class="product-card-body">
+              <div class="accent"></div>
+              <div class="price-tag">From $180</div>
+              <div class="product-title">Modern Chair</div>
+            </div>
+          </article>
+
+          <article class="masonry-item">
+            <img src="https://www.asenseinterior.com/assets/mediafile/DSC00453-HDR.webp" alt="Plant pot tall">
+            <div class="product-card-body">
+              <div class="accent"></div>
+              <div class="price-tag">From $120</div>
+              <div class="product-title">Minimalistic Plant Pot</div>
+            </div>
+          </article>
+
+          <article class="masonry-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRVc5uEBxCyzJ7X3Aknl1fFPWq_8MsGMyB1Q&s" alt="small table">
+            <div class="product-card-body">
+              <div class="accent"></div>
+              <div class="price-tag">From $320</div>
+              <div class="product-title">Small Table</div>
+            </div>
+          </article>
+
+          <article class="masonry-item">
+            <img src="https://m.media-amazon.com/images/I/61vH-1XU7iL._AC_UF894,1000_QL80_.jpg" alt="plant pot">
+            <div class="product-card-body">
+              <div class="accent"></div>
+              <div class="price-tag">From $18</div>
+              <div class="product-title">Plant Pot</div>
+            </div>
+          </article>
+
+          <article class="masonry-item">
+            <img src="https://m.media-amazon.com/images/I/817Ip20vi-L._AC_UF894,1000_QL80_.jpg" alt="night stand">
+            <div class="product-card-body">
+              <div class="accent"></div>
+              <div class="price-tag">From $180</div>
+              <div class="product-title">Night Stand</div>
+            </div>
+          </article>
+
+          <article class="masonry-item">
+            <img src="https://images.squarespace-cdn.com/content/v1/573964d460b5e913544a0444/1536814331052-6TQ7EUACF9BQWBRDNDD3/DSC_0220.jpg" alt="metallic chair">
+            <div class="product-card-body">
+              <div class="accent"></div>
+              <div class="price-tag">From $318</div>
+              <div class="product-title">Metallic Chair</div>
+            </div>
+          </article>
+
+          <!-- Add more items as needed -->
+        </div>
+      </main>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
