@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FaceClone — Social Feed Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f0f2f5;
+      --card: #fff;
+      --muted: #65676b;
+      --primary: #1877f2; /* facebook-like blue */
+    }
+    body{ background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    .topbar{ background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+    .brand{ color: var(--primary); font-weight: 700; font-size: 1.25rem; }
+    /* Left column */
+    .left-col .card{ border: 0; border-radius: 10px; }
+    .profile-small{ width:40px; height:40px; object-fit:cover; border-radius:50%; }
+    /* Composer */
+    .composer{ border-radius: 10px; padding: 12px; background: var(--card); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .composer textarea{ resize:none; border:0; outline:none; }
+    .action-row{ border-top:1px solid #eef0f3; margin-top:10px; padding-top:8px; }
+    .action-btn{ cursor:pointer; color:var(--muted); }
+    .action-btn:hover{ color: #000; }
+    /* Post card */
+    .post{ background: var(--card); border-radius:10px; padding:12px; margin-bottom:12px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+    .post-img{ width:100%; border-radius:8px; margin-top:8px; }
+    .post-actions .btn{ color: var(--muted); }
+    .stories{ display:flex; gap:10px; overflow:auto; padding:10px 0; }
+    .story{ min-width:110px; height:170px; border-radius:12px; background-size:cover; background-position:center; position:relative; color:#fff; padding:8px; display:flex; align-items:flex-end; }
+    .story .profile{ width:38px; height:38px; border-radius:50%; border:3px solid #1877f2; }
+    @media (max-width: 991px){ .left-col{ display:none; } .right-col{ display:none; } }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <nav class="navbar topbar px-3 py-2 fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2 brand" href="#">FaceClone</a>
+
+      <form class="d-none d-md-flex ms-3 me-auto" style="max-width:420px;">
+        <input class="form-control form-control-sm" type="search" placeholder="Search FaceClone" aria-label="Search">
+      </form>
+
+      <div class="d-flex align-items-center gap-3">
+        <a class="btn btn-sm btn-light d-flex align-items-center gap-2" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16"><path d="M8 .5l6 6V15a1 1 0 0 1-1 1h-3v-4H6v4H3a1 1 0 0 1-1-1V6.5l6-6z"/></svg>
+          Home
+        </a>
+        <a class="btn btn-sm btn-light" href="#">Profile</a>
+
+        <div class="dropdown">
+          <a class="d-flex align-items-center text-decoration-none" href="#" id="profileMenu" data-bs-toggle="dropdown">
+            <img src="https://i.pravatar.cc/40?img=7" alt="me" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height:62px;"></div>
+
+  <div class="container mt-3">
+    <div class="row">
+      <!-- LEFT COLUMN -->
+      <div class="col-lg-3 left-col">
+        <div class="card mb-3 p-3">
+          <div class="d-flex align-items-center gap-2">
+            <img src="https://i.pravatar.cc/80?img=12" class="profile-small">
+            <div>
+              <div style="font-weight:700;">Santhosh K</div>
+              <div style="font-size:0.85rem;color:var(--muted)">View your profile</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-3 mb-3">
+          <ul class="list-unstyled mb-0">
+            <li class="py-2"><a href="#" class="text-decoration-none">Friends</a></li>
+            <li class="py-2"><a href="#" class="text-decoration-none">Groups</a></li>
+            <li class="py-2"><a href="#" class="text-decoration-none">Marketplace</a></li>
+            <li class="py-2"><a href="#" class="text-decoration-none">Watch</a></li>
+            <li class="py-2"><a href="#" class="text-decoration-none">Memories</a></li>
+          </ul>
+        </div>
+
+        <div class="card p-3">
+          <div style="font-weight:700;margin-bottom:8px;">Birthdays</div>
+          <div style="color:var(--muted)">No birthdays today</div>
+        </div>
+      </div>
+
+      <!-- MAIN COLUMN -->
+      <div class="col-lg-6">
+        <!-- STORIES -->
+        <div class="card composer mb-3">
+          <div class="d-flex align-items-center gap-2">
+            <img src="https://i.pravatar.cc/50?img=3" class="profile-small">
+            <input class="form-control" placeholder="What's on your mind?" data-bs-toggle="modal" data-bs-target="#composerModal">
+          </div>
+          <div class="action-row d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-3">
+              <div class="action-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16"><path d="M0 5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v.5l3-1.5v7l-3-1.5V11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5z"/></svg> Live</div>
+              <div class="action-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16"><path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 4v8h12V4H2z"/></svg> Photo</div>
+              <div class="action-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zM4.285 9.567a.5.5 0 0 1 .683-.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-2.116.5.5 0 1 1 .9.434A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-4.932-2.615.5.5 0 0 1 .217-.318z"/></svg> Feeling</div>
+            </div>
+            <div style="color:var(--muted);font-size:0.9rem">Share</div>
+          </div>
+        </div>
+
+        <!-- Composer Modal -->
+        <div class="modal fade" id="composerModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Create Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex gap-2 mb-2">
+                  <img src="https://i.pravatar.cc/50?img=3" class="profile-small">
+                  <div>
+                    <div style="font-weight:700">Santhosh K</div>
+                    <select class="form-select form-select-sm mt-1" style="width:180px;"><option>Public</option><option>Friends</option><option>Only me</option></select>
+                  </div>
+                </div>
+                <textarea class="form-control" rows="4" placeholder="What's on your mind?"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Posts -->
+        <div class="post">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <img src="https://i.pravatar.cc/50?img=10" class="profile-small">
+              <div>
+                <div style="font-weight:700">Anjali Rao</div>
+                <div style="font-size:0.85rem;color:var(--muted)">2 hrs • Public</div>
+              </div>
+            </div>
+            <div style="color:var(--muted)">...</div>
+          </div>
+          <div style="margin-top:8px;">Had a fantastic day at the beach! 🌊☀️</div>
+          <img class="post-img" src="https://picsum.photos/900/400?random=41" alt="post">
+          <div class="d-flex justify-content-between post-actions mt-2">
+            <div>
+              <button class="btn btn-sm btn-light me-1 like-btn" onclick="toggleLike(this)">👍 Like</button>
+              <button class="btn btn-sm btn-light me-1">💬 Comment</button>
+              <button class="btn btn-sm btn-light">↗️ Share</button>
+            </div>
+            <div style="color:var(--muted)">24 Likes • 6 Comments</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <img src="https://i.pravatar.cc/50?img=9" class="profile-small">
+              <div>
+                <div style="font-weight:700">Ramesh K</div>
+                <div style="font-size:0.85rem;color:var(--muted)\">Yesterday • Friends</div>
+              </div>
+            </div>
+            <div style="color:var(--muted)">...</div>
+          </div>
+          <div style="margin-top:8px;">Sharing a quick tutorial on Bootstrap grid. Hope this helps someone!</div>
+          <div class="d-flex gap-2 mt-2">
+            <img src="https://picsum.photos/450/240?random=51" class="post-img" styl
