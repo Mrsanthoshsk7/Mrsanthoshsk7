@@ -1,0 +1,244 @@
+:root {
+    color-scheme: dark;
+    --bg: #07111f;
+    --surface: #0f1b2d;
+    --text: #f8fafc;
+    --muted: #a8b2c5;
+    --accent: #5eead4;
+    --accent-strong: #2dd4bf;
+    --border: rgba(255, 255, 255, 0.12);
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg), #16253b);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+img {
+    max-width: 100%;
+}
+
+.hero {
+    min-height: 100vh;
+    padding: 1.5rem clamp(1rem, 3vw, 2rem) 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(16px);
+}
+
+.brand {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 180ms ease;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.3rem;
+}
+
+.hero-content {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    max-width: 760px;
+    padding: 4rem 0;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    margin: 0 0 1rem;
+}
+
+h1 {
+    font-size: clamp(2.4rem, 4vw, 4rem);
+}
+
+.hero-copy,
+.section p,
+.card p,
+.contact-form label {
+    color: var(--muted);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #062127;
+}
+
+.btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.section {
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    margin-bottom: 1.2rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.card,
+.contact-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+}
+
+.pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.pill-list li {
+    padding: 0.6rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.contact-form {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.contact-form label {
+    display: grid;
+    gap: 0.35rem;
+    font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 0.8rem 0.95rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.form-status {
+    min-height: 1.2rem;
+    color: var(--accent);
+    margin: 0;
+}
+
+@media (max-width: 760px) {
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 1rem;
+        top: 3.2rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.85rem;
+        padding: 0.75rem;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
